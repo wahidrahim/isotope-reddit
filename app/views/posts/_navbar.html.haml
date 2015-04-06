@@ -10,7 +10,7 @@
     #navbarCollapse.collapse.navbar-collapse
       %ul.nav.navbar-nav
         - ['hot', 'top', 'rising', 'new', 'controversial'].each do |category|
-          %li
+          %li{class: ('active' if params[:category] == category)}
             - if params[:subreddit]
               - nav_link_url = "/r/#{params[:subreddit]}/#{category}"
             - else
