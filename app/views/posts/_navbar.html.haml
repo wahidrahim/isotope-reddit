@@ -1,1 +1,10 @@
-%nav.navbar.navbar-inverse.navbar-static-top(role='navigation')
+%nav.navbar.navbar-inverse.navbar-static-top{role: 'navigation'}
+  .container-fluid
+    - unless reddit.signed_in?
+      = form_tag login_path, class: 'navbar-form navbar-right', role: 'sign_in' do
+        .form-group
+          = text_field_tag :username, nil, placeholder: 'username', class: 'form-control'
+          = password_field_tag :password, nil, placeholder: 'password', class: 'form-control'
+        = submit_tag 'Log in', class: 'btn btn-success'
+    - else
+      = link_to "Log out (#{reddit.current_user.name})", logout_path, class: 'btn navbar-btn btn-warning pull-right', method: :delete

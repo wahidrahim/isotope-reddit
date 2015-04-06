@@ -1,7 +1,9 @@
 - @posts.each_with_index do |post, index|
   .post
     .title
-      = link_to post.title, target: '_blank'
+      - if post.over_18
+        %span.nsfw NSFW
+      = link_to post.title, post.url, target: '_blank'
 
     - if post.url.downcase[/(\.jpg|\.png|\.gif)$|(imgur\.com\/\w{7})$/]
       - img_url = post.url.downcase[/(imgur\.com\/\w{7})$/] ? "#{post.url}.jpg" : post.url
@@ -11,9 +13,16 @@
         %source{src: post.url.sub(/(\.gifv)$/, '.mp4'), type: 'video/mp4'}
         %source{src: post.url.sub(/(\.gifv)$/, '.webm'), type: 'video/webm'}
 
-    .post-info
-      %span.score= post.score
-      %span.author= "&#8226; #{post.author}".html_safe
-      %span.subreddit="&#8226; #{post.subreddit}".html_safe
-      %span.comments= "#{post.num_comments} comments"
-
+    %div.post-info
+      %span.score
+        = "#{post.score} &nbsp;".html_safe
+      %span.created_at
+        -#%span.glyphicon.glyphicon-time
+        %i.fa.fa-clock-o
+        = " #{time_ago_in_words(post.created_at)} &nbsp;".html_safe
+      %span.author
+        %i.fa.fa-user
+        = "#{post.author} &nbsp;".html_safe
+      %span.subreddit
+        = link_to "<i class='fa fa-reddit-square'></i> #{post.subreddit}".html_safe, subreddit_path(post.subreddit)
+      %span.comments= link_to "#{post.num_comments} <i class='fa fa-comments-o'></i>".html_safe, post.permalink, target: '_blank'

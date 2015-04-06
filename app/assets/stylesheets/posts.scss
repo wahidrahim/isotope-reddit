@@ -4,6 +4,8 @@ $baby-blue: #46a5e5;
 $dark-blue: #182945;
 $default-fonts: 'Lato', sans-serif;
 
+@import url(http://fonts.googleapis.com/css?family=Cousine:700);
+
 @mixin typography {
   font-family: $default-fonts;
   color: #FFFFFF;
@@ -28,9 +30,9 @@ $default-fonts: 'Lato', sans-serif;
 }
 
 @mixin content-shadow {
-    -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -48,7 +50,7 @@ body {
   background-color: $orange;
   margin-bottom: 20px;
   border-radius: 3px;
-  width: 350px;
+  width: 400px;
 
   .title {
     padding: 5px;
@@ -64,15 +66,19 @@ body {
   }
 
   .post-info {
-    font-size: 8pt;
+    font-size: 10pt;
     padding: 5px;
+
     .score {
-      font-size: 10pt;
+      /*font-size: pt;*/
+      font-weight: 900;
       color: #fbf6ce;
     }
-    .author, .subreddit {
+
+    .author, .subreddit, .created_at {
       opacity: 0.7;
     }
+
     .comments {
       float: right;
     }
