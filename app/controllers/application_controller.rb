@@ -8,5 +8,4 @@ class ApplicationController < ActionController::Base
   def reddit
     session[:reddit] ||= RedditKit
   end
-
 end
