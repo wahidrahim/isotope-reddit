@@ -4,8 +4,6 @@ $baby-blue: #46a5e5;
 $dark-blue: #182945;
 $default-fonts: 'Lato', sans-serif;
 
-@import url(http://fonts.googleapis.com/css?family=Cousine:700);
-
 @mixin typography {
   font-family: $default-fonts;
   color: #FFFFFF;
@@ -37,6 +35,10 @@ $default-fonts: 'Lato', sans-serif;
 
 body {
   background-color: $dark-blue !important;
+}
+
+.navbar {
+  @include typography;
 }
 
 #posts-container {
