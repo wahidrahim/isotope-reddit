@@ -1,0 +1,19 @@
+- @posts.each_with_index do |post, index|
+  .post
+    .title
+      = link_to post.title, target: '_blank'
+
+    - if post.url.downcase[/(\.jpg|\.png|\.gif)$|(imgur\.com\/\w{7})$/]
+      - img_url = post.url.downcase[/(imgur\.com\/\w{7})$/] ? "#{post.url}.jpg" : post.url
+      = image_tag img_url
+    - elsif post.url.downcase.ends_with? 'gifv'
+      %video(autoplay loop muted preload)
+        %source{src: post.url.sub(/(\.gifv)$/, '.mp4'), type: 'video/mp4'}
+        %source{src: post.url.sub(/(\.gifv)$/, '.webm'), type: 'video/webm'}
+
+    .post-info
+      %span.score= post.score
+      %span.author= "&#8226; #{post.author}".html_safe
+      %span.subreddit="&#8226; #{post.subreddit}".html_safe
+      %span.comments= "#{post.num_comments} comments"
+
