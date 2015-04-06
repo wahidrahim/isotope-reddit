@@ -1,2 +1,7 @@
 #posts-container
   = render 'posts'
+
+%nav.pagination
+  - unless request.original_fullpath == '/'
+    = link_to 'prev', "?before=t3_#{@first_id}"
+  = link_to 'next', "?after=t3_#{@last_id}"

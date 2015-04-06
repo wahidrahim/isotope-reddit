@@ -94,3 +94,12 @@ span.nsfw {
   background-color: rgba(0, 0, 0, 0.2);
   padding: 0px 2px 0px 2px;
 }
+
+nav.pagination {
+  a {
+    padding: 0px 5px 1px 5px;
+    border: 1px solid $baby-blue;
+    border-radius: 3px;
+  }
+  margin: 5px;
+}

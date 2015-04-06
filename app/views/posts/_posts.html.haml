@@ -1,5 +1,5 @@
 - @posts.each_with_index do |post, index|
-  .post
+  .post{id: post.id}
     .title
       - if post.over_18
         %span.nsfw NSFW
@@ -17,12 +17,16 @@
       %span.score
         = "#{post.score} &nbsp;".html_safe
       %span.created_at
-        -#%span.glyphicon.glyphicon-time
         %i.fa.fa-clock-o
         = " #{time_ago_in_words(post.created_at)} &nbsp;".html_safe
       %span.author
         %i.fa.fa-user
         = "#{post.author} &nbsp;".html_safe
       %span.subreddit
-        = link_to "<i class='fa fa-reddit-square'></i> #{post.subreddit}".html_safe, subreddit_path(post.subreddit)
-      %span.comments= link_to "#{post.num_comments} <i class='fa fa-comments-o'></i>".html_safe, post.permalink, target: '_blank'
+        %a{href: subreddit_path(post.subreddit)}
+          %i.fa.fa-reddit-square
+          = post.subreddit
+      %span.comments
+        %a{href: post.permalink, target: '_blank'}
+          = post.num_comments
+          %i.fa.fa-comments-o

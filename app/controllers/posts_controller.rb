@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   def index
-    @posts = reddit.front_page(options)
+    @posts = reddit.front_page(options).results
+    @first_id = @posts.first.id
+    @last_id = @posts.last.id
   end
 
   def subreddit
@@ -13,6 +15,7 @@ class PostsController < ApplicationController
   def options
     {category: params[:category],
      time: params[:time],
-     after: params[:after]}
+     after: params[:after],
+     before: params[:before]}
   end
 end
