@@ -20,8 +20,9 @@
         %i.fa.fa-clock-o
         = " #{time_ago_in_words(post.created_at)} &nbsp;".html_safe
       %span.author
-        %i.fa.fa-user
-        = "#{post.author} &nbsp;".html_safe
+        %a{href: submissions_path(post.author)}
+          %i.fa.fa-user
+          = "#{post.author} &nbsp;".html_safe
       %span.subreddit
         %a{href: subreddit_path(post.subreddit)}
           %i.fa.fa-reddit-square

@@ -103,3 +103,15 @@ nav.pagination {
   }
   margin: 5px;
 }
+
+.alert.flash {
+  border-radius: 0;
+  margin-bottom: 0;
+  padding: 2px 2px 2px 2px;
+  font-weight: bold;
+
+  button.close {
+    top: 0px;
+    right: 0px;
+  }
+}
