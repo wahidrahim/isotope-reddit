@@ -1,30 +1,10 @@
 %nav.navbar.navbar-inverse.navbar-static-top{role: 'navigation'}
   .container-fluid
     .navbar-header
-      %button.navbar-toggle.collapsed{"data-target" => "#navbarCollapse", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{href: root_path}= params[:subreddit] || 'front page'
+      = render 'collapsed_button'
+      %a.navbar-brand{href: root_path}
+        %i.fa.fa-reddit
 
     #navbarCollapse.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        - ['hot', 'top', 'rising', 'new', 'controversial'].each do |category|
-          %li{class: ('active' if params[:category] == category)}
-            - if params[:subreddit]
-              - nav_link_url = "/r/#{params[:subreddit]}/#{category}"
-            - else
-              - nav_link_url = "/#{category}"
-            %a{href: nav_link_url}= category
-
-      - unless reddit.signed_in?
-        = form_tag login_path, class: 'navbar-form navbar-right', role: 'sign_in' do
-          .form-group
-            = text_field_tag :username, nil, placeholder: 'username', class: 'form-control'
-            = password_field_tag :password, nil, placeholder: 'password', class: 'form-control'
-          = submit_tag 'Log in', class: 'btn btn-success'
-      - else
-        = link_to "Log out", logout_path, class: 'btn navbar-btn btn-warning pull-right', method: :delete
-        %span.navbar-text.pull-right
-          = "Signed in as #{reddit.current_user.name}".html_safe
+      = render 'navbar_links'
+      = render 'login_form'

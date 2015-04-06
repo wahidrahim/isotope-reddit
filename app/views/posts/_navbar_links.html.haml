@@ -1,0 +1,16 @@
+%ul.nav.navbar-nav
+  - ['hot', 'top', 'rising', 'new', 'controversial'].each do |category|
+    %li{class: ('active' if params[:category] == category)}
+      - if params[:subreddit]
+        %a{href: subreddit_path(category: category)}= category
+      - else
+        %a{href: posts_path(category: category)}= category
+
+- if params[:category] == 'top' || params[:category] == 'controversial'
+  %ul.nav.navbar-nav
+    - ['hour', 'day', 'week', 'month', 'year', 'all'].each do |time|
+      %li{class: ('active' if params[:time] == time)}
+        - if params[:subreddit]
+          %a{href: subreddit_path(category: params[:category], time: time)}= time
+        - else
+          %a{href: posts_path(category: params[:category], time: time)}= time
