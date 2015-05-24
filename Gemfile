@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
+ruby '2.2.1'
 gem 'redditkit'
+#gem 'redd'
 gem 'haml-rails'
 gem 'activerecord-session_store'
 
@@ -22,4 +24,3 @@ end
 
 gem 'rails_12factor', group: :production
 
-ruby '2.2.1'

@@ -15,4 +15,5 @@
 //= require_tree .
 //= require isotope.pkgd.min
 //= require imagesloaded.pkgd.min
+//= require jquery.infinitescroll.min
 //= require gradient
