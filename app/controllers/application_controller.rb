@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   helper_method :reddit
 
   def reddit
-    session[:reddit] ||= RedditKit
+    RedditKit::Client.new
   end
 end

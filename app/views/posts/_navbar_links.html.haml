@@ -10,13 +10,14 @@
       - else
         %a{href: posts_path(category: category)}= category
 
-- if params[:category] == 'top' || params[:category] == 'controversial' || params[:sort] == 'top' || params[:sort] == 'controversial'
-  %ul.nav.navbar-nav
-    - ['hour', 'day', 'week', 'month', 'year', 'all'].each do |time|
-      %li{class: ('active' if params[:time] == time)}
-        - if params[:subreddit]
-          %a{href: subreddit_path(category: params[:category], time: time)}= time
-        - elsif params[:user]
-          %a{href: submissions_path(sort: params[:sort], time: time)}= time
-        - else
-          %a{href: posts_path(category: params[:category], time: time)}= time
+  - if params[:category] == 'top' || params[:category] == 'controversial' || params[:sort] == 'top' || params[:sort] == 'controversial'
+    %li.divider-vertical
+    %ul.nav.navbar-nav
+      - ['hour', 'day', 'week', 'month', 'year', 'all'].each do |time|
+        %li{class: ('active' if params[:time] == time)}
+          - if params[:subreddit]
+            %a{href: subreddit_path(category: params[:category], time: time)}= time
+          - elsif params[:user]
+            %a{href: submissions_path(sort: params[:sort], time: time)}= time
+          - else
+            %a{href: posts_path(category: params[:category], time: time)}= time

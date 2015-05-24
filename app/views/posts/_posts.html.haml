@@ -1,14 +1,18 @@
 - @posts.each_with_index do |post, index|
   .post{id: post.id}
+    - if post.url.downcase[/(\.jpg|\.png|\.gif|\.gifv)$|(imgur\.com\/\w{7})$/] and !post.over_18
+      .thumb
+        %a{href: post.url, target: '_blank'}
+          = image_tag post.thumbnail
     .title
       - if post.over_18
         %span.nsfw NSFW
       = link_to post.title, post.url, target: '_blank'
 
-    - if post.url.downcase[/(\.jpg|\.png|\.gif)$|(imgur\.com\/\w{7})$/]
+    -#- if post.url.downcase[/(\.jpg|\.png|\.gif)$|(imgur\.com\/\w{7})$/]
       - img_url = post.url.downcase[/(imgur\.com\/\w{7})$/] ? "#{post.url}.jpg" : post.url
       = image_tag img_url
-    - elsif post.url.downcase.ends_with? 'gifv'
+    -#- elsif post.url.downcase.ends_with? 'gifv'
       %video(autoplay loop muted preload)
         %source{src: post.url.sub(/(\.gifv)$/, '.mp4'), type: 'video/mp4'}
         %source{src: post.url.sub(/(\.gifv)$/, '.webm'), type: 'video/webm'}

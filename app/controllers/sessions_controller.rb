@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   def create
     begin
-      reddit.sign_in params[:username], params[:password]
+      client = RedditKit::Client.new params[:username], params[:password]
+      session[:client] = client if client.signed_in?
     rescue
       error_msg = "&nbsp; <i class='fa fa-exclamation-circle'></i> Invalid username or password!".html_safe
       redirect_to root_path, flash: {error: error_msg} and return
